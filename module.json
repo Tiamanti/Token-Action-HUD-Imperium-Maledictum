@@ -1,0 +1,51 @@
+{
+  "id": "token-action-hud-imperium-maledictum",
+  "title": "Token Action HUD Imperium Maledictum",
+  "description": "Token Action HUD module for the Imperium Maledictum game system.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Tiamanti",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum",
+  "esmodules": [
+    "./modules/token-action-hud-imperium-maledictum.mjs"
+  ],
+  "styles": [
+    "./styles/imperium-maledictum.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "./languages/en.json"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "impmal",
+        "type": "system",
+        "compatibility": {}
+      }
+    ],
+    "requires": [
+      {
+        "id": "token-action-hud-core",
+        "type": "module",
+        "compatibility": {
+          "minimum": "2.0.0"
+        }
+      }
+    ]
+  },
+  "flags": {
+    "canUpload": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "tokenActionHud": {
+    "impmal": {
+      "groups": {
+        "characteristics": "Characteristics",
+        "combat": "Combat",
+        "skills": "Skills",
+        "powers": "Psychic Powers",
+        "talents": "Talents & Traits",
+        "inventory": "Inventory",
+        "utility": "Utility"
+      },
+      "actions": {
+        "rollInitiative": "Roll Initiative",
+        "endTurn": "End Turn"
+      },
+      "items": {
+        "weapon": "Weapon",
+        "ammo": "Ammo",
+        "protection": "Protection",
+        "forceField": "Force Field",
+        "equipment": "Equipment",
+        "augmetic": "Augmetic",
+        "modification": "Modification",
+        "talent": "Talent",
+        "boonLiability": "Boon/Liability",
+        "trait": "Trait",
+        "power": "Psychic Power",
+        "specialisation": "Skills",
+        "duty": "Duty"
+      }
+    }
+  }
+}
