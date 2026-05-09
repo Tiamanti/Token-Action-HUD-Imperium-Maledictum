@@ -39,6 +39,7 @@ export const tah = {
         forceField:    { id: 'forceField',    name: 'tokenActionHud.impmal.items.forceField',    listName: 'tokenActionHud.impmal.items.forceField',    type: 'system' },
         equipment:     { id: 'equipment',     name: 'tokenActionHud.impmal.items.equipment',     listName: 'tokenActionHud.impmal.items.equipment',     type: 'system' },
         augmetic:      { id: 'augmetic',      name: 'tokenActionHud.impmal.items.augmetic',      listName: 'tokenActionHud.impmal.items.augmetic',      type: 'system' },
-        utility:       { id: 'utility',       name: 'tokenActionHud.impmal.groups.utility',      listName: 'tokenActionHud.impmal.groups.utility',      type: 'system' }
+        utility:       { id: 'utility',       name: 'tokenActionHud.impmal.groups.utility',      listName: 'tokenActionHud.impmal.groups.utility',      type: 'system' },
+        restRecover:   { id: 'restRecover',   name: 'tokenActionHud.impmal.groups.restRecover',   listName: 'tokenActionHud.impmal.groups.restRecover',   type: 'system' }
     }
 }

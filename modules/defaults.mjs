@@ -70,7 +70,8 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.utility',
             type: 'system',
             groups: [
-                { ...g.utility, nestId: 'utility_utility' }
+                { ...g.utility,      nestId: 'utility_utility'      },
+                { ...g.restRecover,  nestId: 'utility_restRecover'  }
             ]
         }
     ],

@@ -19,6 +19,7 @@ export function createActionHandler (coreModule) {
                 await this.#buildCombat(groupIds)
                 await this.#buildPowers(groupIds)
                 await this.#buildInventory(groupIds)
+                await this.#buildRestRecover(groupIds)
             }
             await this.#buildUtility(groupIds)
         }
@@ -42,7 +43,33 @@ export function createActionHandler (coreModule) {
                 .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
             for (const item of items) {
                 if (!groupIds.includes(item.type)) continue
-                await this.addActions([this.#itemToAction(item)], tah.groups[item.type])
+                const action = item.type === 'weapon'
+                    ? this.#weaponToAction(item)
+                    : this.#ammoToAction(item)
+                await this.addActions([action], tah.groups[item.type])
+            }
+        }
+
+        #weaponToAction (item) {
+            const base = this.#itemToAction(item)
+            if (this.actor.type !== 'character') return base
+
+            const holding = this.actor.system.hands.isHolding(item.id)
+            const inLeft = !!holding.left
+            const inRight = !!holding.right
+
+            let cssClass = ''
+            if (inLeft && inRight) cssClass = 'tah-impmal-equipped-both'
+            else if (inRight)      cssClass = 'tah-impmal-equipped-right'
+            else if (inLeft)       cssClass = 'tah-impmal-equipped-left'
+
+            return { ...base, cssClass }
+        }
+
+        #ammoToAction (item) {
+            return {
+                ...this.#itemToAction(item),
+                encodedValue: ['ammo', item.id].join(this.delimiter)
             }
         }
 
@@ -105,6 +132,22 @@ export function createActionHandler (coreModule) {
                 if (!groupIds.includes(item.type)) continue
                 await this.addActions([this.#itemToAction(item)], tah.groups[item.type])
             }
+        }
+
+        async #buildRestRecover (groupIds) {
+            if (!groupIds.includes('restRecover')) return
+            await this.addActions([
+                {
+                    id: 'rest6h',
+                    name: game.i18n.localize('tokenActionHud.impmal.actions.rest6h'),
+                    encodedValue: ['utility', 'rest6h'].join(this.delimiter)
+                },
+                {
+                    id: 'restDay',
+                    name: game.i18n.localize('tokenActionHud.impmal.actions.restDay'),
+                    encodedValue: ['utility', 'restDay'].join(this.delimiter)
+                }
+            ], tah.groups.restRecover)
         }
 
         async #buildUtility (groupIds) {
