@@ -2,16 +2,48 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/Tiamanti/Token-Action-HUD-Imperium-Maledictum)](https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/releases/latest)
 
-A [Token Action HUD Core](https://github.com/Drental/fvtt-tokenactionhud) adapter for the [Imperium Maledictum](https://github.com/moo-man/ImpMal-FoundryVTT) game system on Foundry VTT.
+A [Token Action HUD Core](https://github.com/Larkinabout/fvtt-token-action-hud-core) adapter for the [Imperium Maledictum](https://github.com/moo-man/ImpMal-FoundryVTT) game system on Foundry VTT.
 
-Adds a quick-access HUD above tokens with actions grouped into:
+## Features
 
-- **Combat** — weapons and ammo
-- **Skills** — skill specialisations
-- **Psychic Powers** — power items
-- **Talents & Traits** — talents, traits, boons/liabilities
-- **Inventory** — protection, force fields, equipment, augmetics
-- **Utility** — initiative and turn management
+### Characteristics
+Click to open the test dialog for that characteristic. The current total is shown as a badge.
+
+### Skills
+All skills and their specialisations listed with current totals as badges. Click to roll.
+
+### Talents & Traits
+Talents, traits, boons, and liabilities. Click to send to chat.
+
+### Combat
+**Actions** — All available combat actions (Aim, Charge, Defend, etc.). The currently active action is highlighted. Click to select; click again to clear. Right-click to open the Actions rules journal.
+
+**Weapons** — Each weapon shows skill total, damage, and which hand(s) it is held in:
+- Left-click: open weapon test dialog
+- Right-click: cycle equip state — Unequipped → Right hand → Left hand → Unequipped (two-handed weapons toggle directly between equipped and unequipped)
+- Double-click: open character sheet on the Combat tab
+
+**Ammo** — Click to open the character sheet on the Combat tab.
+
+### Psychic Powers
+Only shown for actors that have at least one psychic power.
+
+**Warp Charge** — A single button displaying the current warp charge as filled (●) and empty (○) circles. Circles turn green when charge exceeds the threshold (Willpower bonus).
+- Click when charge ≤ threshold: Purge roll
+- Click when charge > threshold: Psychic Mastery test
+- Right-click (any state): Purge roll
+
+**Powers** — Each power shows Warp Rating, adjusted skill total, and damage (with +SL flag where applicable). Overt powers are displayed with a distinct colour. Click to cast; right-click to send the power card to chat.
+
+### Inventory
+Protection, force fields, equipment, and augmetics. Click to send to chat.
+
+### Utility
+**Combat** — Roll Initiative and End Turn buttons (shown only during active combat).
+
+**Rest & Recover** — Available outside and during combat:
+- *6 Hour Rest*: heals Toughness bonus Wounds and posts a chat message
+- *Entire Day Rest*: heals 2× Toughness bonus Wounds and posts a chat message
 
 ## Limitations
 
@@ -21,9 +53,9 @@ Currently only supports Characters and NPCs. Vehicle support will be added in th
 
 | Dependency | Minimum version |
 |---|-----------------|
-| Foundry VTT | 13              |
-| Token Action HUD Core | 2.1.0           |
-| Imperium Maledictum system | —               |
+| Foundry VTT | 13 |
+| Token Action HUD Core | 2.1.0 |
+| Imperium Maledictum system | — |
 
 ## Installation
 
@@ -68,7 +100,7 @@ The rollup config reads `module.json` for the module ID and copies `module.json`
 
 ## Contributing
 
-Pull requests are welcome. 
+Pull requests are welcome.
 
 ## License
 

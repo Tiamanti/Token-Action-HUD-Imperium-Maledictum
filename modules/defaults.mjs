@@ -39,8 +39,9 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.combat',
             type: 'system',
             groups: [
-                { ...g.weapon, nestId: 'combat_weapon' },
-                { ...g.ammo,   nestId: 'combat_ammo'   }
+                { ...g.weapon,       nestId: 'combat_weapon'       },
+                { ...g.ammo,         nestId: 'combat_ammo'         },
+                { ...g.combatAction, nestId: 'combat_combatAction' }
             ]
         },
         {
@@ -49,7 +50,8 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.powers',
             type: 'system',
             groups: [
-                { ...g.power, nestId: 'powers_power' }
+                { ...g.warpCharge, nestId: 'powers_warpCharge' },
+                { ...g.power,      nestId: 'powers_power'      }
             ]
         },
         {
@@ -70,7 +72,8 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.utility',
             type: 'system',
             groups: [
-                { ...g.utility, nestId: 'utility_utility' }
+                { ...g.utility,      nestId: 'utility_utility'      },
+                { ...g.restRecover,  nestId: 'utility_restRecover'  }
             ]
         }
     ],

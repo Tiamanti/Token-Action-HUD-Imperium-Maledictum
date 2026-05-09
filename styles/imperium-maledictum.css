@@ -3,3 +3,16 @@
 button.tah-impmal-overt .tah-button-text {
     color: rgba(210, 115, 45, 0.8);
 }
+
+/* Active combat action highlight */
+button.tah-impmal-active {
+    outline: 1px solid rgba(210, 115, 45, 0.9);
+    background: rgba(210, 115, 45, 0.15);
+}
+
+button.tah-impmal-active .tah-button-text {
+    color: rgba(210, 115, 45, 1);
+}
+
+
+
