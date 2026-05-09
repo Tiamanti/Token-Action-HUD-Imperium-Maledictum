@@ -32,8 +32,9 @@ export function createActionHandler (coreModule) {
                 .sort(([a], [b]) => (game.i18n.localize(charConfig[a]) ?? a).localeCompare(game.i18n.localize(charConfig[b]) ?? b))
                 .map(([key, char]) => ({
                     id: `char_${key}`,
-                    name: `${game.i18n.localize(charConfig[key])} (${char.total})`,
+                    name: game.i18n.localize(charConfig[key]),
                     encodedValue: ['characteristic', key].join(this.delimiter),
+                    info1: { text: String(char.total) },
                     img: ''
                 }))
             await this.addActions(actions, tah.groups.characteristic)
@@ -66,20 +67,27 @@ export function createActionHandler (coreModule) {
 
         #weaponToAction (item) {
             const base = this.#itemToAction(item)
-            if (this.actor.type !== 'character') return base
+
+            const info1 = item.system.skillTotal != null ? { text: String(item.system.skillTotal) } : undefined
+            const info2 = item.system.damage?.value  != null ? { text: String(item.system.damage.value) }  : undefined
+
+            if (this.actor.type !== 'character') return { ...base, info1, info2 }
 
             const holding     = this.actor.system.hands.isHolding(item.id)
             const inLeft      = !!holding.left
             const inRight     = !!holding.right
             const isTwoHanded = item.system.traits.has('twohanded')
 
-            const iconLeft  = { icon: '<i class="fa-solid fa-hand fa-flip-horizontal"></i>', title: game.i18n.localize('tokenActionHud.impmal.hands.left') }
-            const iconRight = { icon: '<i class="fa-solid fa-hand"></i>',                    title: game.i18n.localize('tokenActionHud.impmal.hands.right') }
+            let info3
+            if (inLeft && inRight && isTwoHanded) {
+                info3 = { icon: '<i class="fa-solid fa-hand fa-flip-horizontal"></i><i class="fa-solid fa-hand"></i>' }
+            } else if (inRight) {
+                info3 = { icon: '<i class="fa-solid fa-hand"></i>' }
+            } else if (inLeft) {
+                info3 = { icon: '<i class="fa-solid fa-hand fa-flip-horizontal"></i>' }
+            }
 
-            if (inLeft && inRight && isTwoHanded) return { ...base, info1: iconLeft, info2: iconRight }
-            if (inRight)                          return { ...base, info1: iconRight }
-            if (inLeft)                           return { ...base, info1: iconLeft }
-            return base
+            return { ...base, info1, info2, info3 }
         }
 
         #ammoToAction (item) {
@@ -103,8 +111,9 @@ export function createActionHandler (coreModule) {
 
                 actions.push({
                     id: `skill_${key}`,
-                    name: `${skillName} (${skill.total})`,
-                    encodedValue: ['skill', key].join(this.delimiter)
+                    name: skillName,
+                    encodedValue: ['skill', key].join(this.delimiter),
+                    info1: { text: String(skill.total) }
                 })
 
                 const specs = [...(skill.specialisations ?? [])]
@@ -112,8 +121,9 @@ export function createActionHandler (coreModule) {
                 for (const spec of specs) {
                     actions.push({
                         id: spec.id,
-                        name: `${skillName} - ${spec.name} (${spec.system.total})`,
+                        name: `${skillName} – ${spec.name}`,
                         encodedValue: ['specialisation', spec.id].join(this.delimiter),
+                        info1: { text: String(spec.system.total) },
                         img: ''
                     })
                 }
@@ -126,10 +136,39 @@ export function createActionHandler (coreModule) {
             if (!groupIds.includes('power')) return
             const items = [...this.actor.items.filter(i => i.type === 'power')]
                 .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
-            await this.addActions(items.map(i => ({
-                ...this.#itemToAction(i),
-                cssClass: i.system.overt ? 'tah-impmal-overt' : ''
-            })), tah.groups.power)
+            await this.addActions(items.map(i => this.#powerToAction(i)), tah.groups.power)
+        }
+
+        #powerToAction (item) {
+            const sys = item.system
+
+            const info1 = sys.rating != null
+                ? { text: `WR ${sys.rating}` }
+                : undefined
+
+            const skill = sys.skill
+            const skillTotal = skill instanceof Item
+                ? skill.system.total
+                : this.actor.system.skills[skill]?.total ?? 0
+            const diffMod = game.impmal.config.difficulties?.[sys.difficulty]?.modifier ?? 0
+            const adjusted = skillTotal + diffMod
+            const info2 = adjusted ? { text: String(adjusted) } : undefined
+
+            let info3
+            if (sys.damage?.value > 0) {
+                const dmgText = sys.damage.SL
+                    ? `${sys.damage.value}+SL`
+                    : String(sys.damage.value)
+                info3 = { text: dmgText }
+            }
+
+            return {
+                ...this.#itemToAction(item),
+                cssClass: sys.overt ? 'tah-impmal-overt' : '',
+                info1,
+                info2,
+                info3
+            }
         }
 
         async #buildTalents (groupIds) {
