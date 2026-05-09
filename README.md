@@ -11,13 +11,17 @@ Adds a quick-access HUD above tokens with actions grouped into:
 - **Inventory** — protection, force fields, equipment, augmetics
 - **Utility** — initiative and turn management
 
+## Limitations
+
+Currently only supports Characters and NPCs. Vehicle support will be added in the future.
+
 ## Requirements
 
 | Dependency | Minimum version |
-|---|---|
-| Foundry VTT | 13 |
-| Token Action HUD Core | 2.0.0 |
-| Imperium Maledictum system | — |
+|---|-----------------|
+| Foundry VTT | 13              |
+| Token Action HUD Core | 2.1.0           |
+| Imperium Maledictum system | —               |
 
 ## Installation
 
@@ -52,4 +56,9 @@ The rollup config reads `module.json` for the module ID and copies `module.json`
 
 ## Contributing
 
-Pull requests are welcome. This module is released under the [MIT License](LICENSE) and is free for anyone to use, modify, or maintain.
+Pull requests are welcome. 
+
+## License
+
+This module is released under the [MIT License](LICENSE) and is free for anyone to use, modify, or maintain.
+This work is licensed under Foundry Virtual Tabletop [EULA - Limited License for Package Development from March 2, 2023](https://foundryvtt.com/article/license/).
