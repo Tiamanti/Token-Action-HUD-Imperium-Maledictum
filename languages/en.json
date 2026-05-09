@@ -11,6 +11,10 @@
         "utility": "Utility",
         "restRecover": "Rest & Recover"
       },
+      "hands": {
+        "left": "Left Hand",
+        "right": "Right Hand"
+      },
       "actions": {
         "rollInitiative": "Roll Initiative",
         "endTurn": "End Turn",

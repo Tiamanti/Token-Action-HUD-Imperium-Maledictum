@@ -4,38 +4,5 @@ button.tah-impmal-overt .tah-button-text {
     color: rgba(210, 115, 45, 0.8);
 }
 
-/* Hand equipped indicators on weapon buttons */
-button.tah-impmal-equipped-right .tah-action-image,
-button.tah-impmal-equipped-left .tah-action-image,
-button.tah-impmal-equipped-both .tah-action-image {
-    position: relative;
-}
 
-button.tah-impmal-equipped-right .tah-action-image::after,
-button.tah-impmal-equipped-left .tah-action-image::after,
-button.tah-impmal-equipped-both .tah-action-image::after {
-    font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
-    font-weight: 900;
-    content: "\f256"; /* fa-hand */
-    position: absolute;
-    bottom: 1px;
-    right: 1px;
-    font-size: 9px;
-    line-height: 1;
-    color: #e8c97a;
-    text-shadow: 0 0 3px #000;
-}
 
-button.tah-impmal-equipped-left .tah-action-image::after {
-    transform: scaleX(-1);
-    right: auto;
-    left: 1px;
-}
-
-button.tah-impmal-equipped-both .tah-action-image::after {
-    content: "\f4c2"; /* fa-hands */
-    font-size: 8px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-}

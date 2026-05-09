@@ -54,16 +54,18 @@ export function createActionHandler (coreModule) {
             const base = this.#itemToAction(item)
             if (this.actor.type !== 'character') return base
 
-            const holding = this.actor.system.hands.isHolding(item.id)
-            const inLeft = !!holding.left
-            const inRight = !!holding.right
+            const holding     = this.actor.system.hands.isHolding(item.id)
+            const inLeft      = !!holding.left
+            const inRight     = !!holding.right
+            const isTwoHanded = item.system.traits.has('twohanded')
 
-            let cssClass = ''
-            if (inLeft && inRight) cssClass = 'tah-impmal-equipped-both'
-            else if (inRight)      cssClass = 'tah-impmal-equipped-right'
-            else if (inLeft)       cssClass = 'tah-impmal-equipped-left'
+            const iconLeft  = { icon: '<i class="fa-solid fa-hand fa-flip-horizontal"></i>', title: game.i18n.localize('tokenActionHud.impmal.hands.left') }
+            const iconRight = { icon: '<i class="fa-solid fa-hand"></i>',                    title: game.i18n.localize('tokenActionHud.impmal.hands.right') }
 
-            return { ...base, cssClass }
+            if (inLeft && inRight && isTwoHanded) return { ...base, info1: iconLeft, info2: iconRight }
+            if (inRight)                          return { ...base, info1: iconRight }
+            if (inLeft)                           return { ...base, info1: iconLeft }
+            return base
         }
 
         #ammoToAction (item) {

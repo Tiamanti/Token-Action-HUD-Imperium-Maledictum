@@ -62,26 +62,29 @@ export function createRollHandler (coreModule) {
             if (!item) return
 
             if (this.actor.type !== 'character') {
-                // NPCs have no hands model — simple equipped toggle
                 if (item.system.isEquipped) await item.system.unequip()
                 else await item.system.equip()
                 return
             }
 
-            const holding = this.actor.system.hands.isHolding(item.id)
-            const inLeft = !!holding.left
-            const inRight = !!holding.right
+            const holding     = this.actor.system.hands.isHolding(item.id)
+            const inLeft      = !!holding.left
+            const inRight     = !!holding.right
+            const isTwoHanded = item.system.traits.has('twohanded')
 
             if (!inLeft && !inRight) {
-                // Not equipped → equip to right (main) hand
-                await this.actor.update(this.actor.system.hands.equip(item, 'right'))
-            } else if (inRight && !inLeft) {
-                // Right hand → switch to left hand
-                await this.actor.update(this.actor.system.hands.unequip(item))
-                await this.actor.update(this.actor.system.hands.equip(item, 'left'))
+                // Unequipped → equip (sets both hands for two-handed weapons)
+                await item.system.equip('right')
+            } else if (isTwoHanded) {
+                // Two-handed equipped → unequip
+                await item.system.unequip()
+            } else if (inRight) {
+                // Right hand → left hand
+                await item.system.unequip()
+                await item.system.equip('left')
             } else {
-                // Left hand only or both hands (two-handed) → unequip
-                await this.actor.update(this.actor.system.hands.unequip(item))
+                // Left hand → unequip
+                await item.system.unequip()
             }
         }
 
