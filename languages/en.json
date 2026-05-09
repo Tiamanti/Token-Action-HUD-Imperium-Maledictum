@@ -10,7 +10,8 @@
         "inventory": "Inventory",
         "utility": "Utility",
         "restRecover": "Rest & Recover",
-        "combatAction": "Action"
+        "combatAction": "Action",
+        "warpCharge": "Warp Charge"
       },
       "hands": {
         "left": "Left Hand",

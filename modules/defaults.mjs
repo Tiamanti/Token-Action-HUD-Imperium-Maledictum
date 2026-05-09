@@ -50,7 +50,8 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.powers',
             type: 'system',
             groups: [
-                { ...g.power, nestId: 'powers_power' }
+                { ...g.warpCharge, nestId: 'powers_warpCharge' },
+                { ...g.power,      nestId: 'powers_power'      }
             ]
         },
         {

@@ -26,7 +26,8 @@ export const tah = {
         specialisation: 'specialisation',
         duty: 'duty',
         utility: 'utility',
-        combatAction: 'combatAction'
+        combatAction: 'combatAction',
+        warpCharge: 'warpCharge'
     },
     // Leaf groups — these are the user-configurable sections shown in HUD settings.
     // Top-level categories are defined inline in defaults.mjs.
@@ -45,6 +46,7 @@ export const tah = {
         augmetic:      { id: 'augmetic',      name: 'tokenActionHud.impmal.items.augmetic',      listName: 'tokenActionHud.impmal.items.augmetic',      type: 'system' },
         utility:       { id: 'utility',       name: 'tokenActionHud.impmal.groups.utility',       listName: 'tokenActionHud.impmal.groups.utility',       type: 'system' },
         restRecover:   { id: 'restRecover',   name: 'tokenActionHud.impmal.groups.restRecover',   listName: 'tokenActionHud.impmal.groups.restRecover',   type: 'system' },
-        combatAction:  { id: 'combatAction',  name: 'tokenActionHud.impmal.groups.combatAction',  listName: 'tokenActionHud.impmal.groups.combatAction',  type: 'system' }
+        combatAction:  { id: 'combatAction',  name: 'tokenActionHud.impmal.groups.combatAction',  listName: 'tokenActionHud.impmal.groups.combatAction',  type: 'system' },
+        warpCharge:    { id: 'warpCharge',    name: 'tokenActionHud.impmal.groups.warpCharge',    listName: 'tokenActionHud.impmal.groups.warpCharge',    type: 'system' }
     }
 }

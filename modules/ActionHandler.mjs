@@ -18,7 +18,10 @@ export function createActionHandler (coreModule) {
                 await this.#buildTalents(groupIds)
                 await this.#buildCombatActions(groupIds)
                 await this.#buildCombat(groupIds)
-                await this.#buildPowers(groupIds)
+                if (actor.items.some(i => i.type === 'power')) {
+                    await this.#buildWarpCharge(groupIds)
+                    await this.#buildPowers(groupIds)
+                }
                 await this.#buildInventory(groupIds)
                 await this.#buildRestRecover(groupIds)
             }
@@ -130,6 +133,30 @@ export function createActionHandler (coreModule) {
             }
 
             await this.addActions(actions, tah.groups.specialisation)
+        }
+
+        async #buildWarpCharge (groupIds) {
+            if (!groupIds.includes('warpCharge')) return
+            const warp      = this.actor.system.warp
+            const charge    = warp.charge    ?? 0
+            const threshold = warp.threshold ?? 0
+            const isOver    = charge > threshold
+
+            let label
+            if (isOver) {
+                label = `<span style="color:var(--impmal-lightgreen)">${'●'.repeat(charge)}</span>`
+            } else {
+                label = '●'.repeat(charge) + '○'.repeat(threshold - charge)
+            }
+
+            await this.addActions([{
+                id: 'warpCharge',
+                name: label || '○',
+                useRawHtmlName: true,
+                encodedValue: ['warpCharge', isOver ? 'mastery' : 'purge'].join(this.delimiter),
+                info1: { text: String(charge) },
+                info2: { text: String(threshold) }
+            }], tah.groups.warpCharge)
         }
 
         async #buildPowers (groupIds) {

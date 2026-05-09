@@ -18,6 +18,15 @@ export function createRollHandler (coreModule) {
                 return
             }
 
+            if (actionType === tah.actions.warpCharge) {
+                if (this.isRenderItem() || actionId === 'purge') {
+                    await this.actor.purge()
+                } else {
+                    await this.actor.setupSkillTest({ key: 'psychic' }, { warp: this.actor.system.warp.state })
+                }
+                return
+            }
+
             if (this.isRenderItem()) {
                 return this.renderItem(this.actor, actionId)
             }
