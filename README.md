@@ -4,7 +4,7 @@
 
 A [Token Action HUD Core](https://github.com/Larkinabout/fvtt-token-action-hud-core) adapter for the [Imperium Maledictum](https://github.com/moo-man/ImpMal-FoundryVTT) game system on Foundry VTT.
 
-![Token Action HUD Imperium Maledictum](.github/assets/IMPMAL.gif)
+![Token Action HUD Imperium Maledictum](https://raw.githubusercontent.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/master/.github/assets/IMPMAL.gif)
 
 ## Features
 
