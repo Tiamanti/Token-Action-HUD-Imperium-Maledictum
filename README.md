@@ -1,5 +1,7 @@
 # Token Action HUD — Imperium Maledictum
 
+[![GitHub release](https://img.shields.io/github/v/release/Tiamanti/Token-Action-HUD-Imperium-Maledictum)](https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/releases/latest)
+
 A [Token Action HUD Core](https://github.com/Drental/fvtt-tokenactionhud) adapter for the [Imperium Maledictum](https://github.com/moo-man/ImpMal-FoundryVTT) game system on Foundry VTT.
 
 Adds a quick-access HUD above tokens with actions grouped into:
@@ -25,7 +27,17 @@ Currently only supports Characters and NPCs. Vehicle support will be added in th
 
 ## Installation
 
-Install via the Foundry VTT module manager using the manifest URL from the GitHub releases page, or copy the module folder into your `Data/modules/` directory.
+**Via Foundry VTT module manager (recommended):**
+
+Search for "Token Action HUD Imperium Maledictum" in the Add-on Modules browser, or paste the manifest URL directly:
+
+```
+https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/releases/latest/download/module.json
+```
+
+**Manual install:**
+
+Download `module.zip` from the [latest release](https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/releases/latest) and extract it into your `Data/modules/` directory.
 
 ## Development
 

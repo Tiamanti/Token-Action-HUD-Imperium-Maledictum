@@ -1,8 +1,13 @@
 import fs from "fs"
 import copy from "rollup-plugin-copy-watch"
 
-const { default: foundryPath } = await import("./foundry-path.js")
-const modulePath = foundryPath()
+let modulePath
+try {
+    const { default: foundryPath } = await import("./foundry-path.js")
+    modulePath = foundryPath()
+} catch {
+    modulePath = "./dist"
+}
 const manifest = JSON.parse(fs.readFileSync("./module.json", "utf-8"))
 const moduleId = manifest.id
 
