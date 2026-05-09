@@ -10,9 +10,8 @@ export function createActionHandler (coreModule) {
     return class ActionHandlerImpmal extends coreModule.api.ActionHandler {
         async buildSystemActions (groupIds) {
             const { actor } = this
-            if (!actor) return
 
-            if (actor.type === 'character' || actor.type === 'npc') {
+            if (actor?.type === 'character' || actor?.type === 'npc') {
                 await this.#buildCharacteristics(groupIds)
                 await this.#buildSkills(groupIds)
                 await this.#buildTalents(groupIds)
@@ -236,12 +235,21 @@ export function createActionHandler (coreModule) {
             if (!groupIds.includes('utility')) return
             const actions = []
             if (game.combat) {
-                actions.push({
-                    id: 'initiative',
-                    name: game.i18n.localize('tokenActionHud.impmal.actions.rollInitiative'),
-                    encodedValue: ['utility', 'initiative'].join(this.delimiter)
-                })
-                if (game.combat?.combatant?.actor?.id === this.actor.id) {
+                if (canvas.tokens.controlled.length === 1) {
+                    actions.push({
+                        id: 'initiative',
+                        name: game.i18n.localize('tokenActionHud.impmal.actions.rollInitiative'),
+                        encodedValue: ['utility', 'initiative'].join(this.delimiter)
+                    })
+                }
+                if (canvas.tokens.controlled.length > 1) {
+                    actions.push({
+                        id: 'initiativeAll',
+                        name: game.i18n.localize('tokenActionHud.impmal.actions.rollInitiativeAll'),
+                        encodedValue: ['utility', 'initiativeAll'].join(this.delimiter)
+                    })
+                }
+                if (this.actor && game.combat?.combatant?.actor?.id === this.actor.id) {
                     actions.push({
                         id: 'endTurn',
                         name: game.i18n.localize('tokenActionHud.impmal.actions.endTurn'),

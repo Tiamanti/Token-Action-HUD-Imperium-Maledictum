@@ -19,6 +19,7 @@
       },
       "actions": {
         "rollInitiative": "Roll Initiative",
+        "rollInitiativeAll": "Roll Initiative (All)",
         "endTurn": "End Turn",
         "rest6h": "6 Hour Rest",
         "restDay": "Entire Day Rest",

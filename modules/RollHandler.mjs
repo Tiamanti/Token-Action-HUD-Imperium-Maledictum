@@ -142,6 +142,11 @@ export function createRollHandler (coreModule) {
             case 'initiative':
                 await this.actor.rollInitiative({ createCombatants: true })
                 break
+            case 'initiativeAll':
+                for (const token of canvas.tokens.controlled) {
+                    if (token.actor) await token.actor.rollInitiative({ createCombatants: true })
+                }
+                break
             case 'endTurn':
                 if (game.combat?.combatant?.actor?.id === this.actor.id) {
                     await game.combat.nextTurn()
