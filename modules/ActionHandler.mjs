@@ -16,6 +16,7 @@ export function createActionHandler (coreModule) {
                 await this.#buildCharacteristics(groupIds)
                 await this.#buildSkills(groupIds)
                 await this.#buildTalents(groupIds)
+                await this.#buildCombatActions(groupIds)
                 await this.#buildCombat(groupIds)
                 await this.#buildPowers(groupIds)
                 await this.#buildInventory(groupIds)
@@ -36,6 +37,19 @@ export function createActionHandler (coreModule) {
                     img: ''
                 }))
             await this.addActions(actions, tah.groups.characteristic)
+        }
+
+        async #buildCombatActions (groupIds) {
+            if (!groupIds.includes('combatAction')) return
+            const currentAction = this.actor.system.combat?.action ?? ''
+            const actions = Object.entries(game.impmal.config.actions).map(([key, data]) => ({
+                id: `combatAction_${key}`,
+                name: game.i18n.localize(data.label),
+                encodedValue: ['combatAction', key].join(this.delimiter),
+                active: currentAction === key,
+                cssClass: currentAction === key ? 'tah-impmal-active' : ''
+            }))
+            await this.addActions(actions, tah.groups.combatAction)
         }
 
         async #buildCombat (groupIds) {

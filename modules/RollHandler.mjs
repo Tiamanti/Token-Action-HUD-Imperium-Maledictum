@@ -1,4 +1,4 @@
-import { tah } from './constants.mjs'
+import { tah, constants } from './constants.mjs'
 
 export function createRollHandler (coreModule) {
     return class RollHandlerImpmal extends coreModule.api.RollHandler {
@@ -9,6 +9,12 @@ export function createRollHandler (coreModule) {
                 if (event.detail >= 2) return this.#openSheetOnCombatTab()
                 if (this.isRenderItem()) return this.#handleWeaponEquip(actionId)
                 await this.#handleWeapon(actionId)
+                return
+            }
+
+            if (actionType === tah.actions.combatAction) {
+                if (this.isRenderItem()) return this.#openActionsJournal()
+                await this.#handleCombatAction(actionId)
                 return
             }
 
@@ -85,6 +91,19 @@ export function createRollHandler (coreModule) {
             } else {
                 // Left hand → unequip
                 await item.system.unequip()
+            }
+        }
+
+        async #openActionsJournal () {
+            const page = await fromUuid(constants.journals.actions)
+            if (page) page.parent.sheet.render(true, { pageId: page.id })
+        }
+
+        async #handleCombatAction (actionKey) {
+            if (this.actor.system.combat.action === actionKey) {
+                await this.actor.clearAction()
+            } else {
+                await this.actor.useAction(actionKey)
             }
         }
 

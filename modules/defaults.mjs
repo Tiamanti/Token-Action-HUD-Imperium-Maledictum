@@ -39,8 +39,9 @@ export const DEFAULTS = {
             name: 'tokenActionHud.impmal.groups.combat',
             type: 'system',
             groups: [
-                { ...g.weapon, nestId: 'combat_weapon' },
-                { ...g.ammo,   nestId: 'combat_ammo'   }
+                { ...g.weapon,       nestId: 'combat_weapon'       },
+                { ...g.ammo,         nestId: 'combat_ammo'         },
+                { ...g.combatAction, nestId: 'combat_combatAction' }
             ]
         },
         {

@@ -9,7 +9,8 @@
         "talents": "Talents & Traits",
         "inventory": "Inventory",
         "utility": "Utility",
-        "restRecover": "Rest & Recover"
+        "restRecover": "Rest & Recover",
+        "combatAction": "Action"
       },
       "hands": {
         "left": "Left Hand",

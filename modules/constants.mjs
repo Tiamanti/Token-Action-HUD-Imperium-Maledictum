@@ -2,7 +2,10 @@ export const constants = {
     moduleId: 'token-action-hud-imperium-maledictum',
     modulePath: 'modules/token-action-hud-imperium-maledictum',
     moduleLabel: 'Token Action HUD Imperium Maledictum',
-    requiredCoreModuleVersion: '2.1'
+    requiredCoreModuleVersion: '2.1',
+    journals: {
+        actions: 'JournalEntry.hdElQAwiBr5AyoRf.JournalEntryPage.xf46pBDy93sT0ZDl'
+    }
 }
 
 export const tah = {
@@ -22,7 +25,8 @@ export const tah = {
         power: 'power',
         specialisation: 'specialisation',
         duty: 'duty',
-        utility: 'utility'
+        utility: 'utility',
+        combatAction: 'combatAction'
     },
     // Leaf groups — these are the user-configurable sections shown in HUD settings.
     // Top-level categories are defined inline in defaults.mjs.
@@ -39,7 +43,8 @@ export const tah = {
         forceField:    { id: 'forceField',    name: 'tokenActionHud.impmal.items.forceField',    listName: 'tokenActionHud.impmal.items.forceField',    type: 'system' },
         equipment:     { id: 'equipment',     name: 'tokenActionHud.impmal.items.equipment',     listName: 'tokenActionHud.impmal.items.equipment',     type: 'system' },
         augmetic:      { id: 'augmetic',      name: 'tokenActionHud.impmal.items.augmetic',      listName: 'tokenActionHud.impmal.items.augmetic',      type: 'system' },
-        utility:       { id: 'utility',       name: 'tokenActionHud.impmal.groups.utility',      listName: 'tokenActionHud.impmal.groups.utility',      type: 'system' },
-        restRecover:   { id: 'restRecover',   name: 'tokenActionHud.impmal.groups.restRecover',   listName: 'tokenActionHud.impmal.groups.restRecover',   type: 'system' }
+        utility:       { id: 'utility',       name: 'tokenActionHud.impmal.groups.utility',       listName: 'tokenActionHud.impmal.groups.utility',       type: 'system' },
+        restRecover:   { id: 'restRecover',   name: 'tokenActionHud.impmal.groups.restRecover',   listName: 'tokenActionHud.impmal.groups.restRecover',   type: 'system' },
+        combatAction:  { id: 'combatAction',  name: 'tokenActionHud.impmal.groups.combatAction',  listName: 'tokenActionHud.impmal.groups.combatAction',  type: 'system' }
     }
 }
