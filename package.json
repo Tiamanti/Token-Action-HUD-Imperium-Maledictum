@@ -1,6 +1,6 @@
 {
   "name": "token-action-hud-imperium-maledictum",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Token Action HUD adapter for the Imperium Maledictum game system.",
   "type": "module",
   "scripts": {

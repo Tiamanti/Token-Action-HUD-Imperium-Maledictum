@@ -32,6 +32,9 @@ export function createRollHandler (coreModule) {
             }
 
             switch (actionType) {
+            case tah.actions.condition:
+                await this.#handleCondition(actionId)
+                break
             case tah.actions.characteristic:
                 await this.#handleCharacteristic(actionId)
                 break
@@ -57,6 +60,21 @@ export function createRollHandler (coreModule) {
                 break
             default:
                 await this.#handleItemDisplay(actionId)
+            }
+        }
+
+        async #handleCondition (conditionId) {
+            const existing = this.actor.hasCondition(conditionId)
+            const isTiered = !!game.impmal.config.tieredCondition[conditionId]
+            if (!existing) {
+                await this.actor.addCondition(conditionId, 'minor')
+            } else if (isTiered && existing.isMinor) {
+                await this.actor.addCondition(conditionId, 'major')
+            } else {
+                await this.actor.removeCondition(conditionId)
+                if (isTiered && existing.isMajor) {
+                    await this.actor.removeCondition(conditionId)
+                }
             }
         }
 

@@ -3,3 +3,4 @@ node_modules/
 foundryconfig.json
 foundry-path.js
 foundry-path.mjs
+dist

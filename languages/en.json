@@ -11,7 +11,12 @@
         "utility": "Utility",
         "restRecover": "Rest & Recover",
         "combatAction": "Action",
-        "warpCharge": "Warp Charge"
+        "warpCharge": "Warp Charge",
+        "conditions": "Conditions"
+      },
+      "conditions": {
+        "minor": "Min",
+        "major": "Maj"
       },
       "hands": {
         "left": "Left Hand",

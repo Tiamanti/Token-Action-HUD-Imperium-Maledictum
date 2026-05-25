@@ -55,6 +55,15 @@ export const DEFAULTS = {
             ]
         },
         {
+            nestId: 'conditions',
+            id: 'conditions',
+            name: 'tokenActionHud.impmal.groups.conditions',
+            type: 'system',
+            groups: [
+                { ...g.condition, nestId: 'conditions_condition' }
+            ]
+        },
+        {
             nestId: 'inventory',
             id: 'inventory',
             name: 'tokenActionHud.impmal.groups.inventory',

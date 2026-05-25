@@ -23,6 +23,7 @@ export function createActionHandler (coreModule) {
                 }
                 await this.#buildInventory(groupIds)
                 await this.#buildRestRecover(groupIds)
+                await this.#buildConditions(groupIds)
             }
             await this.#buildUtility(groupIds)
         }
@@ -258,6 +259,28 @@ export function createActionHandler (coreModule) {
                 }
             }
             await this.addActions(actions, tah.groups.utility)
+        }
+
+        async #buildConditions (groupIds) {
+            if (!groupIds.includes('condition')) return
+            const tieredConfig = game.impmal.config.tieredCondition
+            const actions = CONFIG.statusEffects.map(c => {
+                const existing = this.actor.hasCondition(c.id)
+                const isTiered = !!tieredConfig[c.id]
+                let info1
+                if (existing?.isMajor) info1 = { text: game.i18n.localize('tokenActionHud.impmal.conditions.major') }
+                else if (existing?.isMinor) info1 = { text: game.i18n.localize('tokenActionHud.impmal.conditions.minor') }
+                return {
+                    id: `condition_${c.id}`,
+                    name: c.name,
+                    img: c.img ?? c.icon,
+                    encodedValue: ['condition', c.id].join(this.delimiter),
+                    active: !!existing,
+                    cssClass: existing?.isMajor ? 'tah-impmal-active' : '',
+                    info1
+                }
+            })
+            await this.addActions(actions, tah.groups.condition)
         }
 
         #itemToAction (item) {
