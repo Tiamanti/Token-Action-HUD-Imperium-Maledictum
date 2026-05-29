@@ -15,17 +15,20 @@ Click to open the test dialog for that characteristic. The current total is show
 All skills and their specialisations listed with current totals as badges. Click to roll.
 
 ### Talents & Traits
-Talents, traits, boons, and liabilities. Click to send to chat.
+Talents, traits, boons, and liabilities. Click to send to chat. Right-click → **Open Sheet** to open the item sheet.
 
 ### Combat
-**Actions** — All available combat actions (Aim, Charge, Defend, etc.). The currently active action is highlighted. Click to select; click again to clear. Right-click to open the Actions rules journal.
+**Actions** — All available combat actions (Aim, Charge, Defend, etc.). The currently active action is highlighted. Click to select; click again to clear. Right-click → **Open Journal** to open the Actions rules journal.
 
-**Weapons** — Each weapon shows skill total, damage, and which hand(s) it is held in:
-- Left-click: open weapon test dialog
-- Right-click: cycle equip state — Unequipped → Right hand → Left hand → Unequipped (two-handed weapons toggle directly between equipped and unequipped)
-- Double-click: open character sheet on the Combat tab
+**Weapons** — Each weapon shows skill total and damage as badges. Ranged weapons also show magazine state in the damage badge (e.g. `5 3/15`). Which hand(s) the weapon is held in is shown as a third badge (characters only). Click to open the weapon test dialog. Right-click for a context menu:
+- **Equip (Right Hand)** / **Equip (Left Hand)** — equip to the chosen hand (single-handed weapons only)
+- **Equip (Both Hands)** — equip a two-handed weapon
+- **Unequip** — remove from hand(s)
+- **Open Sheet** — open the item sheet
 
-**Ammo** — Click to open the character sheet on the Combat tab.
+For NPCs (no hand tracking), the context menu shows **Equip** / **Unequip** instead.
+
+**Ammo** — Shows the name of the weapon currently loaded with this ammo as a badge. Click to open the character sheet on the Combat tab. Right-click for a context menu listing each compatible weapon — click a weapon to load this ammo into it. Also **Open Sheet**.
 
 ### Psychic Powers
 Only shown for actors that have at least one psychic power.
@@ -33,12 +36,20 @@ Only shown for actors that have at least one psychic power.
 **Warp Charge** — A single button displaying the current warp charge as filled (●) and empty (○) circles. Circles turn green when charge exceeds the threshold (Willpower bonus).
 - Click when charge ≤ threshold: Purge roll
 - Click when charge > threshold: Psychic Mastery test
-- Right-click (any state): Purge roll
+- Right-click → **Purge** to force a Purge roll regardless of charge level
 
-**Powers** — Each power shows Warp Rating, adjusted skill total, and damage (with +SL flag where applicable). Overt powers are displayed with a distinct colour. Click to cast; right-click to send the power card to chat.
+**Powers** — Each power shows Warp Rating, adjusted skill total, and damage (with +SL flag where applicable). Overt powers are displayed with a distinct colour. Click to cast. Right-click → **Open Sheet**.
 
 ### Inventory
-Protection, force fields, equipment, and augmetics. Click to send to chat.
+Protection, force fields, equipment, and augmetics. Click to send to chat. Right-click → **Open Sheet**.
+
+### Conditions
+All ImpMal conditions listed with icon and name (matches the character sheet Effects tab). Click to cycle states:
+- Inactive → Minor (for tiered conditions) or active (for non-tiered)
+- Minor → Major (tiered conditions only)
+- Major / active → removed
+
+Active conditions show a **Min** / **Maj** severity badge.
 
 ### Utility
 **Combat** — Roll Initiative and End Turn buttons (shown only during active combat).

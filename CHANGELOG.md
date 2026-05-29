@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.1.0] — 2026-05-29
+
+### Added
+- **Context menus** — right-clicking actions now shows a labelled context menu (TAH Core 2.1 `tokenActionHudCoreActionContextMenu`):
+  - **Weapons (character)**: Equip (Right Hand), Equip (Left Hand) / Equip (Both Hands) for two-handed weapons, Unequip, Open Sheet.
+  - **Weapons (NPC)**: Equip, Unequip, Open Sheet.
+  - **Ammo**: one entry per compatible weapon in the actor — clicking loads the ammo into that weapon. Also Open Sheet.
+  - **Talents, Traits, Boons/Liabilities, Powers, Inventory**: Open Sheet.
+  - **Combat Actions**: Open Journal (links to the ImpMal Actions journal entry).
+  - **Warp Charge**: Purge.
+- **Ammo badge on weapon** (`info2`) — ranged weapons now show damage and magazine state together (e.g. `5 3/15`). Grenade/explosive weapons show damage and quantity (e.g. `5 ×3`). Melee weapons unchanged.
+- **Loaded weapon badge on ammo** (`info1`) — ammo buttons show the name of the weapon currently using them.
+
+### Changed
+- All actions use TAH Core 2.0's `action.onClick` pattern; `encodedValue` and `RollHandler` logic removed.
+- `requiredCoreModuleVersion` set to `'2'` (major-version-only, supported since core 2.1).
+- Minimum `token-action-hud-core` dependency in `module.json` updated to `2.1.0`.
+
+---
+
 ## [1.0.4]
 
 ### Added

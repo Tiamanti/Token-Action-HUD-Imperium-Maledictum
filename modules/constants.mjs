@@ -2,34 +2,13 @@ export const constants = {
     moduleId: 'token-action-hud-imperium-maledictum',
     modulePath: 'modules/token-action-hud-imperium-maledictum',
     moduleLabel: 'Token Action HUD Imperium Maledictum',
-    requiredCoreModuleVersion: '2.1',
+    requiredCoreModuleVersion: '2',
     journals: {
         actions: 'JournalEntry.hdElQAwiBr5AyoRf.JournalEntryPage.xf46pBDy93sT0ZDl'
     }
 }
 
 export const tah = {
-    actions: {
-        characteristic: 'characteristic',
-        skill: 'skill',
-        weapon: 'weapon',
-        ammo: 'ammo',
-        protection: 'protection',
-        forceField: 'forceField',
-        equipment: 'equipment',
-        augmetic: 'augmetic',
-        modification: 'modification',
-        talent: 'talent',
-        boonLiability: 'boonLiability',
-        trait: 'trait',
-        power: 'power',
-        specialisation: 'specialisation',
-        duty: 'duty',
-        utility: 'utility',
-        combatAction: 'combatAction',
-        warpCharge: 'warpCharge',
-        condition: 'condition'
-    },
     // Leaf groups — these are the user-configurable sections shown in HUD settings.
     // Top-level categories are defined inline in defaults.mjs.
     groups: {

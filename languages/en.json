@@ -31,6 +31,16 @@
         "rest6hMessage": "Rested for 6 hours and healed {wounds} Wound(s).",
         "restDayMessage": "Rested for an entire day and healed {wounds} Wound(s)."
       },
+      "context": {
+        "equipRight": "Equip (Right Hand)",
+        "equipLeft": "Equip (Left Hand)",
+        "equipBothHands": "Equip (Both Hands)",
+        "equip": "Equip",
+        "unequip": "Unequip",
+        "openSheet": "Open Sheet",
+        "openJournal": "Open Journal",
+        "purge": "Purge"
+      },
       "items": {
         "weapon": "Weapon",
         "ammo": "Ammo",
