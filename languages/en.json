@@ -31,6 +31,9 @@
         "rest6hMessage": "Rested for 6 hours and healed {wounds} Wound(s).",
         "restDayMessage": "Rested for an entire day and healed {wounds} Wound(s)."
       },
+      "warnings": {
+        "noCrewForTest": "No crew or passengers — assign actors to the vehicle before rolling."
+      },
       "context": {
         "equipRight": "Equip (Right Hand)",
         "equipLeft": "Equip (Left Hand)",

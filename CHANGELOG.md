@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.2.0] — 2026-05-29
+
+### Added
+- **Vehicle actor support** — selecting a vehicle token now shows a HUD with three sections:
+  - **Actions** — vehicle actions from `game.impmal.config.vehicleActions`, filtered by vehicle category (wheeled/tracked/flyer/walker). Click to execute (prompts for crew member where applicable).
+  - **Weapons** — all weapons assigned to the vehicle, with damage and magazine badge. Click to open a weapon test (prompts for crew member). Shows a warning notification if no crew or passengers are assigned.
+  - **Traits** — vehicle traits with description tooltip. Click to open the item sheet. Right-click → **Open Sheet**.
+  - **Utility** — Roll Initiative and End Turn (same as characters and NPCs).
+
+### Fixed
+- **Condition cycle** — clicking a major tiered condition now correctly removes it instead of cycling back to minor. The `isMajor` check was being evaluated after `removeCondition` had already mutated the effect document to minor state.
+
+---
+
 ## [1.1.0] — 2026-05-29
 
 ### Added

@@ -22,6 +22,10 @@ export function createActionHandler (coreModule) {
                 await this.#buildInventory(groupIds)
                 await this.#buildRestRecover(groupIds)
                 await this.#buildConditions(groupIds)
+            } else if (actor?.type === 'vehicle') {
+                await this.#buildVehicleCombatActions(groupIds)
+                await this.#buildVehicleWeapons(groupIds)
+                await this.#buildVehicleTraits(groupIds)
             }
             await this.#buildUtility(groupIds)
         }
@@ -329,13 +333,63 @@ export function createActionHandler (coreModule) {
                         } else if (tiered && curr.isMinor) {
                             await actor.addCondition(c.id, 'major')
                         } else {
+                            const wasMajor = tiered && curr.isMajor
                             await actor.removeCondition(c.id)
-                            if (tiered && curr.isMajor) await actor.removeCondition(c.id)
+                            if (wasMajor) await actor.removeCondition(c.id)
                         }
                     }
                 }
             })
             await this.addActions(actions, tah.groups.condition)
+        }
+
+        async #buildVehicleCombatActions (groupIds) {
+            if (!groupIds.includes('combatAction')) return
+            const actor = this.actor
+            const category = actor.system.category
+            const actions = Object.entries(game.impmal.config.vehicleActions ?? {})
+                .filter(([, data]) => !data.restriction || data.restriction(actor))
+                .map(([key, data]) => ({
+                    id: `vehicleAction_${key}`,
+                    name: game.i18n.localize(data.name),
+                    system: { actionType: 'vehicleAction' },
+                    onClick: async () => actor.system.useAction(key)
+                }))
+            await this.addActions(actions, tah.groups.combatAction)
+        }
+
+        async #buildVehicleWeapons (groupIds) {
+            if (!groupIds.includes('weapon')) return
+            const actor = this.actor
+            const items = [...actor.items.filter(i => i.type === 'weapon')]
+                .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
+            const actions = items.map(item => ({
+                ...this.#itemBase(item),
+                info2: this.#weaponInfo2(item),
+                hasContextMenu: true,
+                system: { actionType: 'vehicleWeapon' },
+                onClick: async () => {
+                    if (!actor.system.actors.documents.length) {
+                        return ui.notifications.warn(game.i18n.localize('tokenActionHud.impmal.warnings.noCrewForTest'))
+                    }
+                    await actor.setupWeaponTest(item.uuid)
+                }
+            }))
+            await this.addActions(actions, tah.groups.weapon)
+        }
+
+        async #buildVehicleTraits (groupIds) {
+            if (!groupIds.includes('trait')) return
+            const actor = this.actor
+            const items = [...actor.items.filter(i => i.type === 'trait')]
+                .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
+            const actions = items.map(item => ({
+                ...this.#itemBase(item),
+                hasContextMenu: true,
+                system: { actionType: 'item' },
+                onClick: async () => item.sheet.render(true)
+            }))
+            await this.addActions(actions, tah.groups.trait)
         }
 
         // --- Helpers ---

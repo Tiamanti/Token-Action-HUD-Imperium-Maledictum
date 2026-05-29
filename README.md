@@ -58,9 +58,15 @@ Active conditions show a **Min** / **Maj** severity badge.
 - *6 Hour Rest*: heals Toughness bonus Wounds and posts a chat message
 - *Entire Day Rest*: heals 2× Toughness bonus Wounds and posts a chat message
 
-## Limitations
+### Vehicles
 
-Currently only supports Characters and NPCs. Vehicle support will be added in the future.
+**Actions** — Vehicle actions available to this vehicle's category (wheeled, tracked, flyer, walker). Click to execute; the system prompts for a crew member where a test is required.
+
+**Weapons** — All weapons assigned to the vehicle, with damage and magazine badge. Click to open a weapon test dialog (prompts for crew member). A warning is shown if the vehicle has no crew or passengers assigned.
+
+**Traits** — Vehicle traits with description tooltip. Click to open the item sheet. Right-click → **Open Sheet**.
+
+**Utility** — Roll Initiative and End Turn, same as for characters and NPCs.
 
 ## Requirements
 

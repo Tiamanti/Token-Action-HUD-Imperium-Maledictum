@@ -176,7 +176,7 @@ Hooks.on('tokenActionHudCoreApiReady', async (coreModule) => {
             icon: "<i class='fa-solid fa-scroll'></i>",
             visible: target => {
                 const type = getAction(target)?.system?.actionType
-                return type === 'weapon' || type === 'ammo' || type === 'item'
+                return type === 'weapon' || type === 'ammo' || type === 'item' || type === 'vehicleWeapon'
             },
             onClick: (event, target) => {
                 hudManager.actor.items.get(target.dataset.actionId)?.sheet.render(true)
