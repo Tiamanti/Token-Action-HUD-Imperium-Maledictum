@@ -26,8 +26,73 @@ export function createActionHandler (coreModule) {
                 await this.#buildVehicleCombatActions(groupIds)
                 await this.#buildVehicleWeapons(groupIds)
                 await this.#buildVehicleTraits(groupIds)
+            } else if (!actor) {
+                await this.#buildMultipleTokenActions(groupIds)
             }
             await this.#buildUtility(groupIds)
+        }
+
+        async #buildMultipleTokenActions (groupIds) {
+            await this.#buildMultiCharacteristics(groupIds)
+            await this.#buildMultiSkills(groupIds)
+            await this.#buildMultiConditions(groupIds)
+        }
+
+        async #buildMultiCharacteristics (groupIds) {
+            if (!groupIds.includes('characteristic')) return
+            const charConfig = game.impmal.config.characteristics
+            const actions = Object.keys(charConfig)
+                .sort((a, b) => (game.i18n.localize(charConfig[a]) ?? a).localeCompare(game.i18n.localize(charConfig[b]) ?? b))
+                .map(key => ({
+                    id: `char_${key}`,
+                    name: game.i18n.localize(charConfig[key]),
+                    img: '',
+                    onClick: async () => {
+                        for (const a of this.actors) await a.setupCharacteristicTest(key)
+                    }
+                }))
+            await this.addActions(actions, tah.groups.characteristic)
+        }
+
+        async #buildMultiSkills (groupIds) {
+            if (!groupIds.includes('specialisation')) return
+            const skillConfig = game.impmal.config.skills
+            const actions = Object.keys(skillConfig)
+                .sort((a, b) => (skillConfig[a] ?? a).localeCompare(skillConfig[b] ?? b))
+                .map(key => ({
+                    id: `skill_${key}`,
+                    name: skillConfig[key] ?? key,
+                    onClick: async () => {
+                        for (const a of this.actors) await a.setupSkillTest({ key })
+                    }
+                }))
+            await this.addActions(actions, tah.groups.specialisation)
+        }
+
+        async #buildMultiConditions (groupIds) {
+            if (!groupIds.includes('condition')) return
+            const tieredConfig = game.impmal.config.tieredCondition
+            const actions = CONFIG.statusEffects.map(c => ({
+                id: `condition_${c.id}`,
+                name: c.name,
+                img: c.img ?? c.icon,
+                onClick: async () => {
+                    for (const a of this.actors) {
+                        const curr = a.hasCondition(c.id)
+                        const tiered = !!tieredConfig[c.id]
+                        if (!curr) {
+                            await a.addCondition(c.id, 'minor')
+                        } else if (tiered && curr.isMinor) {
+                            await a.addCondition(c.id, 'major')
+                        } else {
+                            const wasMajor = tiered && curr.isMajor
+                            await a.removeCondition(c.id)
+                            if (wasMajor) await a.removeCondition(c.id)
+                        }
+                    }
+                }
+            }))
+            await this.addActions(actions, tah.groups.condition)
         }
 
         async #buildCharacteristics (groupIds) {
@@ -277,21 +342,18 @@ export function createActionHandler (coreModule) {
             const actor = this.actor
             const actions = []
             if (game.combat) {
-                if (canvas.tokens.controlled.length === 1) {
+                if (this.actors.length === 1) {
                     actions.push({
                         id: 'initiative',
                         name: game.i18n.localize('tokenActionHud.impmal.actions.rollInitiative'),
                         onClick: async () => actor.rollInitiative({ createCombatants: true })
                     })
-                }
-                if (canvas.tokens.controlled.length > 1) {
+                } else {
                     actions.push({
                         id: 'initiativeAll',
                         name: game.i18n.localize('tokenActionHud.impmal.actions.rollInitiativeAll'),
                         onClick: async () => {
-                            for (const token of canvas.tokens.controlled) {
-                                if (token.actor) await token.actor.rollInitiative({ createCombatants: true })
-                            }
+                            for (const a of this.actors) await a.rollInitiative({ createCombatants: true })
                         }
                     })
                 }

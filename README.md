@@ -1,6 +1,11 @@
 # Token Action HUD — Imperium Maledictum
 
-[![GitHub release](https://img.shields.io/github/v/release/Tiamanti/Token-Action-HUD-Imperium-Maledictum)](https://github.com/Tiamanti/Token-Action-HUD-Imperium-Maledictum/releases/latest)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Tiamanti/Token-Action-HUD-Imperium-Maledictum?style=for-the-badge)
+![Foundry Min Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FTiamanti%2FToken-Action-HUD-Imperium-Maledictum%2Fmaster%2Fmodule.json&label=Foundry%20Min%20Version&query=$.compatibility.minimum&colorB=orange&style=for-the-badge)
+![Foundry Verified](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FTiamanti%2FToken-Action-HUD-Imperium-Maledictum%2Fmaster%2Fmodule.json&label=Foundry%20Verified&query=$.compatibility.verified&colorB=orange&style=for-the-badge)
+![License](https://img.shields.io/github/license/Tiamanti/Token-Action-HUD-Imperium-Maledictum?style=for-the-badge)
+![GitHub Releases](https://img.shields.io/github/downloads/Tiamanti/Token-Action-HUD-Imperium-Maledictum/latest/module.zip?style=for-the-badge)
+![GitHub All Releases](https://img.shields.io/github/downloads/Tiamanti/Token-Action-HUD-Imperium-Maledictum/module.zip?style=for-the-badge&label=Downloads+total)
 
 A [Token Action HUD Core](https://github.com/Larkinabout/fvtt-token-action-hud-core) adapter for the [Imperium Maledictum](https://github.com/moo-man/ImpMal-FoundryVTT) game system on Foundry VTT.
 
