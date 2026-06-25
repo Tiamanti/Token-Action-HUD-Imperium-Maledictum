@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.3.0] — 2026-06-26
+
+### Added
+- **Familiar actor support** — tokens using the `impmal-inquisition.familiar` actor type (from the Inquisition Guide module) now show a full NPC-equivalent HUD: Characteristics, Skills, Talents & Traits, Combat Actions, Weapons, Psychic Powers, Inventory, Conditions, Rest & Recover, and Utility.
+- **Multi-token selection** — selecting more than one token shows a reduced HUD with:
+  - **Characteristics** — click to roll that characteristic for every selected actor.
+  - **Skills** — click to roll that skill for every selected actor.
+  - **Conditions** — click to cycle the condition for every selected actor.
+  - **Utility** — *Roll Initiative (All)* to roll initiative for all selected actors at once.
+- **Description tooltips** — hovering over talents, traits, boons/liabilities, and psychic powers now shows the item's description (with Foundry inline links rendered as bold text).
+- **Condition tooltips** — hovering over any condition now shows a brief tooltip describing its mechanical effects and how Minor and Major tiers differ.
+
+---
+
 ## [1.2.0] — 2026-05-29
 
 ### Added

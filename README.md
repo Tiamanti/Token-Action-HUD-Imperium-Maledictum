@@ -20,7 +20,7 @@ Click to open the test dialog for that characteristic. The current total is show
 All skills and their specialisations listed with current totals as badges. Click to roll.
 
 ### Talents & Traits
-Talents, traits, boons, and liabilities. Click to send to chat. Right-click → **Open Sheet** to open the item sheet.
+Talents, traits, boons, and liabilities. Click to send to chat. Right-click → **Open Sheet** to open the item sheet. Hover to see the item description.
 
 ### Combat
 **Actions** — All available combat actions (Aim, Charge, Defend, etc.). The currently active action is highlighted. Click to select; click again to clear. Right-click → **Open Journal** to open the Actions rules journal.
@@ -43,7 +43,7 @@ Only shown for actors that have at least one psychic power.
 - Click when charge > threshold: Psychic Mastery test
 - Right-click → **Purge** to force a Purge roll regardless of charge level
 
-**Powers** — Each power shows Warp Rating, adjusted skill total, and damage (with +SL flag where applicable). Overt powers are displayed with a distinct colour. Click to cast. Right-click → **Open Sheet**.
+**Powers** — Each power shows Warp Rating, adjusted skill total, and damage (with +SL flag where applicable). Overt powers are displayed with a distinct colour. Click to cast. Right-click → **Open Sheet**. Hover to see the power description.
 
 ### Inventory
 Protection, force fields, equipment, and augmetics. Click to send to chat. Right-click → **Open Sheet**.
@@ -54,7 +54,7 @@ All ImpMal conditions listed with icon and name (matches the character sheet Eff
 - Minor → Major (tiered conditions only)
 - Major / active → removed
 
-Active conditions show a **Min** / **Maj** severity badge.
+Active conditions show a **Min** / **Maj** severity badge. Hover over any condition to see a tooltip describing its mechanical effects.
 
 ### Utility
 **Combat** — Roll Initiative and End Turn buttons (shown only during active combat).
@@ -72,6 +72,19 @@ Active conditions show a **Min** / **Maj** severity badge.
 **Traits** — Vehicle traits with description tooltip. Click to open the item sheet. Right-click → **Open Sheet**.
 
 **Utility** — Roll Initiative and End Turn, same as for characters and NPCs.
+
+### Familiars (Inquisition Guide)
+
+Familiars from the *Inquisition Guide* module (`impmal-inquisition.familiar` actor type) are treated as NPCs and receive the full NPC HUD: Characteristics, Skills, Talents & Traits, Combat, Psychic Powers, Inventory, Conditions, Rest & Recover, and Utility.
+
+### Multiple Tokens Selected
+
+When more than one token is selected, the HUD switches to a reduced set that applies each action to all selected actors:
+
+- **Characteristics** — click to roll that characteristic for every selected actor.
+- **Skills** — click to roll that skill for every selected actor.
+- **Conditions** — click to cycle the condition for every selected actor.
+- **Utility** — *Roll Initiative (All)* rolls initiative for all selected actors at once.
 
 ## Requirements
 

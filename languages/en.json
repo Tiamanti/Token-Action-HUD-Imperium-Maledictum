@@ -18,6 +18,22 @@
         "minor": "Min",
         "major": "Maj"
       },
+      "conditionDescriptions": {
+        "ablaze": "<p>On fire. <strong>Minor:</strong> Takes 1d5 Damage (ignoring AP) at the start of each Turn; resist with an Athletics test. <strong>Major:</strong> Takes 1d10 Damage (ignoring AP) at the start of each Turn.</p>",
+        "bleeding": "<p>Losing blood. <strong>Minor:</strong> Takes 1 Damage (ignoring AP) at the end of each Turn. <strong>Major:</strong> Takes 3 Damage (ignoring AP) at the end of each Turn.</p>",
+        "blinded": "<p>Cannot see. Tests relying on sight only succeed on a roll of 01–05. Disadvantage on Melee and Reflexes (Dodge) Tests.</p>",
+        "deafened": "<p>Cannot hear. Disadvantage on Tests relying on hearing.</p>",
+        "fatigued": "<p>Exhausted. <strong>Minor:</strong> Disadvantage on all Tests. <strong>Major:</strong> All Tests are Very Hard (−30).</p>",
+        "frightened": "<p>Terrified. <strong>Minor:</strong> Disadvantage to confront the source of Fear; Advantage on Awareness and Intuition Tests. <strong>Major:</strong> Cannot approach the source of Fear.</p>",
+        "incapacitated": "<p>Severely impaired. All Damage taken results in Critical Hits.</p>",
+        "overburdened": "<p>Carrying too much. Speed reduced by 1. Disadvantage on Agility Tests.</p>",
+        "poisoned": "<p>Affected by toxin. <strong>Minor:</strong> Disadvantage on Strength and Toughness Tests; max SL on all Tests equals Toughness Bonus. <strong>Major:</strong> Immediately becomes Prone and Incapacitated.</p>",
+        "prone": "<p>Lying on the ground. Disadvantage on Melee Tests. Attackers within Immediate range gain Advantage; attackers from outside Immediate range suffer Disadvantage.</p>",
+        "restrained": "<p>Held in place. <strong>Minor:</strong> Disadvantage on Athletics, Dexterity, Melee, Reflexes, and Ranged Tests. <strong>Major:</strong> Immediately becomes Incapacitated.</p>",
+        "stunned": "<p>Dazed. <strong>Minor:</strong> Loses next Action. <strong>Major:</strong> Disadvantage on all Tests.</p>",
+        "unconscious": "<p>Knocked out. Immediately becomes Prone and Incapacitated.</p>",
+        "dead": "<p>The character has died.</p>"
+      },
       "hands": {
         "left": "Left Hand",
         "right": "Right Hand"

@@ -9,7 +9,7 @@ export function createActionHandler (coreModule) {
         async buildSystemActions (groupIds) {
             const { actor } = this
 
-            if (actor?.type === 'character' || actor?.type === 'npc') {
+            if (actor?.type === 'character' || actor?.type === 'npc' || actor?.type === 'impmal-inquisition.familiar') {
                 await this.#buildCharacteristics(groupIds)
                 await this.#buildSkills(groupIds)
                 await this.#buildTalents(groupIds)
@@ -76,6 +76,7 @@ export function createActionHandler (coreModule) {
                 id: `condition_${c.id}`,
                 name: c.name,
                 img: c.img ?? c.icon,
+                tooltip: this.#getConditionTooltip(c),
                 onClick: async () => {
                     for (const a of this.actors) {
                         const curr = a.hasCondition(c.id)
@@ -386,6 +387,7 @@ export function createActionHandler (coreModule) {
                     img: c.img ?? c.icon,
                     active: !!existing,
                     cssClass: existing?.isMajor ? 'tah-impmal-active' : '',
+                    tooltip: this.#getConditionTooltip(c),
                     info1,
                     onClick: async () => {
                         const curr = actor.hasCondition(c.id)
@@ -475,8 +477,23 @@ export function createActionHandler (coreModule) {
                 id: item.id,
                 name: item.name,
                 img: coreModule.api.Utils.getImage(item),
-                tooltip: item.system.description?.value ?? ''
+                tooltip: this.#getItemTooltip(item)
             }
+        }
+
+        #getConditionTooltip (c) {
+            const descKey = `tokenActionHud.impmal.conditionDescriptions.${c.id}`
+            const desc = game.i18n.has(descKey) ? game.i18n.localize(descKey) : ''
+            if (!desc) return c.name
+            return `<h2>${c.name}</h2>${desc}`
+        }
+
+        #getItemTooltip (item) {
+            const description = item.system.notes?.player
+            if (!description) return item.name
+            const regex = /@[a-zA-Z]+\[[a-zA-Z0-9._-]+]{([^}]+)}/g
+            const regexShort = /@[a-zA-Z]+\[([a-zA-Z0-9._-]+)](?!{)/g
+            return `<h2>${item.name}</h2>` + description.replaceAll(regex, '<strong>$1</strong>').replaceAll(regexShort, '<strong>$1</strong>')
         }
 
         #itemDisplayAction (item) {
